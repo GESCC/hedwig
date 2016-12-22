@@ -25,3 +25,27 @@ SUCCESS { "code":"200", "message":"OK" }
 ```json
 FAIL { "code":"500", "message":"Server Internal Error"}
 ```
+
+##USER
+###Join user
+```http
+POST /users
+```
+* _Request_
+
+```json
+{
+"email":"yjs930915@gmail.com",
+"password":"dfpieqEYNfiohbe",
+"phone_number":"01012345678",
+}
+```
+
+* _Response_
+
+```json
+SUCCESS { "code":"200", "message":"OK" } 
+```
+```json
+FAIL { "code":"500", "message":"Server Internal Error"}
+```
