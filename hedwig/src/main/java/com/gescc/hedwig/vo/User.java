@@ -1,5 +1,12 @@
 package com.gescc.hedwig.vo;
 
+/**
+* User VO
+* 
+* @author geine
+* @date 2016.12.22
+* @version a
+*/
 public class User {
 
 	private String email;

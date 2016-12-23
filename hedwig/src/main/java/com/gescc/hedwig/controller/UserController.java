@@ -33,20 +33,29 @@ public class UserController {
 	private Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
-	private UserService service;
+	private UserService userService;
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST)
-	public ResultView createUser(HttpServletRequest req, HttpServletResponse res, @RequestBody User user){
+	public ResultView createUser(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		
 		LOG.info("craete user : " + user.toString());
 		try {
-			service.createUser(user);
+			return userService.createUser(user);
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		
-
-		return new ResultView("200", "Success");
+		LOG.info("login user : " + user.toString());
+		try {
+			return userService.doLogin(user);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }
