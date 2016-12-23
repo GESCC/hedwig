@@ -10,6 +10,35 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- jQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#login").click(function() {
+		var action = $("#form1").attr('action');
+		var form_data = {
+			user_id: $("#user_id").val(),
+			user_pw: $("#user_pw").val(),
+			is_ajax: 1
+		};
+		$.ajax({
+			type: "POST",
+			url: action,
+			data: form_data,
+			success: function(response) {
+				if(response == 'success') {
+					$("#message").html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
+					$("#form1").slideUp('slow');
+				}
+				else {
+					$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
 <style>
 body {
 	padding-top: 100px;
@@ -22,15 +51,15 @@ body {
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5">
 			<h2 class="text-center">LOGIN</h2>
-			<form action="#" method="post">
+			<form id="login" method="post" action="/users">
 				<div class="form-group">
 					<label for="email">이메일 주소</label> <input type="email"
 						class="form-control" id="email" name="email"
-						placeholder="이메일을 입력하세요" required="이메일을 입력해주세요.">
+						placeholder="이메일을 입력하세요" required>
 				</div>
 				<div class="form-group">
 					<label for="passwd">암호</label> <input type="password"
-						class="form-control" id="passwd" name="passwd" placeholder="암호" require="패스워드를 입력해주세요">
+						class="form-control" id="passwd" name="passwd" placeholder="암호">
 				</div>
 				<div class="checkbox">
 					<label> <input type="checkbox" name="rememberme">Remember
@@ -39,7 +68,7 @@ body {
 				</div>
 				<p align="center">
 					<button type="submit" class="btn btn-default">제출</button>
-					<a href="signup.jsp" class="btn btn-primary" role="button">회원가입</a>
+					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
 				</p>
 			</form>
 		</div>
