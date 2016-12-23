@@ -12,7 +12,7 @@ import com.gescc.hedwig.vo.User;
 */
 public interface UserService {
 
-	public ResultView createUser(User user);
+	public ResultView createUser(User user) throws Exception;
 	public ResultView deleteUser(String userEmail);
 	public ResultView doLogin(User user);
 	public ResultView updateUser(User user);
