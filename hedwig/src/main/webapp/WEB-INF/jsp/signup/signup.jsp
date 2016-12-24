@@ -30,10 +30,10 @@
                   data: JSON.stringify({"email": $('#email').val(), "password": $('#passwd').val(), "phone_number" :$('#phone').val()}),
                   success: function(response) {
                 	  if(response.code == '200') {
-      					alert("success")
+      					alert("success");
       				}
       					else {
-      					alert("wrong");
+      					alert(response.code);
       				}
                   },
                   error: function() {

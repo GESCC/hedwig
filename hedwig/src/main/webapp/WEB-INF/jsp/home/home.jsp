@@ -15,22 +15,20 @@
 <script>
 $(document).ready(function() {
 	$("#btnLogin").click(function() {
-		var action = $("#login").attr('action');
-		var form_data = {
-			email: $("#email").val(),
-			password: $("password").val(),
-		};
 		$.ajax({
 			type: "POST",
-			url: action,
-			data: form_data,
+			url: "/users/login",
+			contentType : "application/json;charset=utf8",
+			datatype : "json",
+			data: JSON.stringify({
+				email: $("#email").val(),
+				password: $("#passwd").val() }),
 			success: function(response) {
-				if(response == 'success') {
-					$("#message").html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
-					$("#form1").slideUp('slow');
+				if(response.code=='200') {
+					alert("login success");
 				}
 				else {
-					$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+					alert("ERRORCODE" + response.code + " : " + response.message);
 				}
 			}
 		});
@@ -50,7 +48,6 @@ body {
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5">
 			<h2 class="text-center">LOGIN</h2>
-			<form id="login" method="post" action="/users/login">
 				<div class="form-group">
 					<label for="email">이메일 주소</label> <input type="email"
 						class="form-control" id="email" name="email"
@@ -69,7 +66,6 @@ body {
 					<button type="submit" id="btnLogin" class="btn btn-default">제출</button>
 					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
 				</p>
-			</form>
 		</div>
 	</div>
 </body>
