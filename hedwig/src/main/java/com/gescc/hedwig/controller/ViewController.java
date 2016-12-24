@@ -9,12 +9,13 @@ public class ViewController {
 	
 	@RequestMapping("/login")
 	public String index(){
-		return "home";
+		return "/home/home";
 	}
 
+	
 	@RequestMapping("/signup")
 	public String signup(){
-		return "signup";
+		return "/signup/signup";
 	}
 
 }
