@@ -33,7 +33,7 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration(locations = "classpath:/applicationContext.xml")
 public class UserControllerTest {
 
-	private final static String USER_EMAIL = "bonos2@wisdo.me";
+	private final static String USER_EMAIL = "bonos211@wisdo.me";
 	private final static String USER_PASSWORD = "testpassword";
 	private final static String USER_PHONENUMBER = "01012345667";
 	
@@ -48,14 +48,19 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	public void insertUser() throws Exception {
+	public void insertUserAndLogin() throws Exception {
 		String json = "{" + 
 						"\"email\" : \"" + USER_EMAIL + "\"," +
 						"\"password\" : \"" + USER_PASSWORD + "\"," +
-						"\"password\" : \"" + USER_PHONENUMBER + "\"" +
+						"\"phone_number\" : \"" + USER_PHONENUMBER + "\"" +
 					  "}";
 		
 		this.mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(json))
+		.andExpect(jsonPath("$", hasKey("code")))
+		.andExpect(jsonPath("$.code").value("200"))
+		.andReturn();
+		
+		this.mockMvc.perform(post("/users/login").contentType(MediaType.APPLICATION_JSON).content(json))
 		.andExpect(jsonPath("$", hasKey("code")))
 		.andExpect(jsonPath("$.code").value("200"))
 		.andReturn();
