@@ -1,7 +1,5 @@
 package com.gescc.hedwig.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +34,7 @@ public class UserController {
 	private UserService userService;
 	
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResultView createUser(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		
 		LOG.info("craete user : " + user.toString());

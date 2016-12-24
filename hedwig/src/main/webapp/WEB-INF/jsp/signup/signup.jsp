@@ -13,7 +13,7 @@
 
 <script>
     $(document).ready(function() {
-      $('#btnLogin').click(function() {
+      $('#btnSignup').click(function() {
     	var passck1 = $('#passwd').val();
     	var passck2 = $('#passwdck').val();
     	console.log(passck1);
@@ -22,27 +22,27 @@
     		return false;
     	}
     	else {
-        var action = $('signup').attr("action");
-        var form_data = { "email": $('#email').val(), "password": $('#passwd').val(), "phone_number" :$('#phone').val() };
         $.ajax({
-                  type: "POST",
-                  url: action,
-                  data: form_data,
-                  success: function(data) {
-                	  if(data.code == "500"){
-                		  $('#msg').html("<h2>Successfully Signed Up!");
-                		  setTimeout($(location).attr('href', '/'),3000);
-                	  }
-                	  else{
-                		  $('#msg').html(data.message);
-                	  }
+                  type: "post",
+                  url: "/users",
+                  contentType : "application/json;charset=utf8",
+                  datatype : "json",
+                  data: JSON.stringify({"email": $('#email').val(), "password": $('#passwd').val(), "phone_number" :$('#phone').val()}),
+                  success: function(response) {
+                	  if(response.code == '200') {
+      					alert("success")
+      				}
+      					else {
+      					alert("wrong");
+      				}
                   },
                   error: function() {
-                    $('#msg').html("<h2>Error</h2>");
+                    alert(data);
                   }
-        	})
+        	});
         }
       });
+      
     });
   </script>
 <style>
@@ -58,7 +58,6 @@ body {
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5">
 			<h2 class="text-center">Sign Up</h2>
-			<form id="signup" name="signup" action="/users" method="post">
 				<div class="form-group">
 					<label for="email">이메일 주소</label> <input type="email"
 						class="form-control" id="email" name="email"
@@ -80,10 +79,8 @@ body {
 						required>
 				</div>
 				<p align="center">
-					<button type="submit" id="btnLogin" class="btn btn-default">Sign
-						Up</button>
+					<button id="btnSignup" class="btn btn-default">Sign Up</button>
 				</p>
-			</form>
 		</div>
 		<div id="msg" class="col-md-4 col-md-offset-4"></div>
 	</div>

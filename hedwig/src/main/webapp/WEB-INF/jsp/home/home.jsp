@@ -14,12 +14,11 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
 $(document).ready(function() {
-	$("#login").click(function() {
-		var action = $("#form1").attr('action');
+	$("#btnLogin").click(function() {
+		var action = $("#login").attr('action');
 		var form_data = {
-			user_id: $("#user_id").val(),
-			user_pw: $("#user_pw").val(),
-			is_ajax: 1
+			email: $("#email").val(),
+			password: $("password").val(),
 		};
 		$.ajax({
 			type: "POST",
@@ -51,7 +50,7 @@ body {
 	<div class="row">
 		<div class="col-md-2 col-md-offset-5">
 			<h2 class="text-center">LOGIN</h2>
-			<form id="login" method="post" action="/users">
+			<form id="login" method="post" action="/users/login">
 				<div class="form-group">
 					<label for="email">이메일 주소</label> <input type="email"
 						class="form-control" id="email" name="email"
@@ -67,7 +66,7 @@ body {
 					</label>
 				</div>
 				<p align="center">
-					<button type="submit" class="btn btn-default">제출</button>
+					<button type="submit" id="btnLogin" class="btn btn-default">제출</button>
 					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
 				</p>
 			</form>

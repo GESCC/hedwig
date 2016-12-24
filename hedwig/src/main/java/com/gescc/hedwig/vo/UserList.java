@@ -30,11 +30,8 @@ public class UserList {
 		ObjectMapper mapper = new ObjectMapper();
 		URL url = UserList.class.getResource("/data/user.json");
 		File file = new File(url.toURI());
-		List<User> list = mapper.readValue(file, new TypeReference<List<User>>(){});
-		for (User user : list) {
-			this.map.put(user.getEmail(), user);
-		}
-		
+		Map<String,User> list = mapper.readValue(file, new TypeReference<Map<String,User>>(){});
+		this.map = list;
 	}
 	
 	public static synchronized UserList getInstance(){
