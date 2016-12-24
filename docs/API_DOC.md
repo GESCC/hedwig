@@ -49,3 +49,25 @@ SUCCESS { "code":"200", "message":"OK" }
 ```json
 FAIL { "code":"500", "message":"Server Internal Error"}
 ```
+
+###Login user
+```http
+POST /users
+```
+* _Request_
+
+```json
+{
+"email":"yjs930915@gmail.com",
+"password":"dfpieqEYNfiohbe"
+}
+```
+
+* _Response_
+
+```json
+SUCCESS { "code":"200", "message":"OK" } 
+```
+```json
+FAIL { "code":"501", "message":"Incorrect Password"}
+```
