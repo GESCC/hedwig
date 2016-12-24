@@ -17,5 +17,10 @@ public class ViewController {
 	public String signup(){
 		return "/signup/signup";
 	}
+	
+	@RequestMapping("/regapp")
+	public String regapp(){
+		return "/regapp/regapp";
+	}
 
 }
