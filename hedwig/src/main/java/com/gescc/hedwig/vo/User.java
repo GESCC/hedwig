@@ -1,9 +1,19 @@
 package com.gescc.hedwig.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+* User VO
+* 
+* @author geine
+* @date 2016.12.22
+* @version a
+*/
 public class User {
 
 	private String email;
 	private String password;
+	@JsonProperty("phone_number")
 	private String phoneNumber;
 	
 	
