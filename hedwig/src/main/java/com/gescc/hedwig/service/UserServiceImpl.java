@@ -38,10 +38,12 @@ public class UserServiceImpl implements UserService{
 			}
 		} catch (Throwable e) {
 			try {
+				e.printStackTrace();
 				return new ResultView("500", "Internal Server Error");
 			}
 			catch (Throwable e1) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
 				return new ResultView("500", "Internal Server Error");
 			}
 		}

@@ -46,7 +46,7 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
 	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		
 		LOG.info("login user : " + user.toString());
