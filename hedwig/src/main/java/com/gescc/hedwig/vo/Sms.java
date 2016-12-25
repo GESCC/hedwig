@@ -20,11 +20,11 @@ public class Sms {
 		this.title = title;
 	}
 
-	public String getReceiverName() {
+	public String getReceiverNumber() {
 		return receiverNumber;
 	}
 
-	public void setReceiverName(String receiverNumber) {
+	public void setReceiverNumber(String receiverNumber) {
 		this.receiverNumber = receiverNumber;
 	}
 
@@ -54,7 +54,7 @@ public class Sms {
 	
 	@Override
 	public String toString() {
-		return "Sms [title=" + title + ", receiver_number=" + receiverNumber + ", application_name=" + applicationName + 
-				", contents=" + contents + ", callbackUrl=" + callbackUrl + "]";
+		return "Sms [title=" + title + ", receiverNumber=" + receiverNumber + ", applicationName=" + applicationName
+				+ ", contents=" + contents + ", callbackUrl=" + callbackUrl + "]";
 	}
 }

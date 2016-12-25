@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.gescc.hedwig.vo.Sms;
 
-@Configuration
 public class SmsServiceImpl implements SmsService {
 	
 	@Override
