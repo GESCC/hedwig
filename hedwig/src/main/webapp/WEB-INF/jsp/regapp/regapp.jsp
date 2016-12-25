@@ -13,36 +13,33 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script>
-	$(document).ready(
-			function() {
-				$('#btnRegApp').click(
-						function() {
-							var ip = $('#ip').val();
-							var dns = $('#dns').val();
-							console.log(ip);
-							console.log(dns);
-							
-							$.ajax({
-								type : "post",
-								url : "/regapp",
-								contentType : "application/json;charset=utf8",
-								datatype : "json",
-								data : JSON.stringify({"application_name" : $('#appname').val(),"ip_address" : $('#ip').val(),"dns_address" : $('#dns').val()}),
-								success : function(response) {
-									if (response.code == '200') {
-										alert("register success")
-									} else {
-										alert("Error code" + response.code
-												+ ":" + response.message);
-									}
-								},
-								error : function() {
-									alert(data);
-								}
-							});
+$(document).ready(function() {
+	$('#btnRegApp').click(function() {
+		var ip = $('#ip').val();
+		var dns = $('#dns').val();
+		console.log(ip);
+		console.log(dns);
+						
+		$.ajax({
+			type : "post",
+			url : "/regapp",
+			contentType : "application/json;charset=utf8",
+			datatype : "json",
+			data : JSON.stringify({"application_name" : $('#appname').val(),"ip_address" : $('#ip').val(),"dns_address" : $('#dns').val()}),
+			success : function(response) {
+				if (response.code == '200') {
+					alert("register success")
+				} else {
+					alert("Error code" + response.code+ ":" + response.message);
+				}
+			},
+			error : function() {
+				alert(data);
+			}
+		});
 
-						});
-			});
+	});
+});
 </script>
 
 <style>
