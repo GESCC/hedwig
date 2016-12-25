@@ -51,8 +51,8 @@ public class UserServiceTest {
 		assertThat(userService.createUser(user).getCode(), is("200"));
 		assertThat(userService.doLogin(user).getCode(), is("200"));
 		assertThat(userService.doLogin(incorrectUser).getCode(), is("501"));
-		assertThat(userService.deleteUser(user.getEmail()).getCode(), is("200"));
-		assertThat(userService.doLogin(user).getCode(), is("501"));
+		assertThat(userService.deleteUser(user.getEmail()), is("200"));
+		assertThat(userService.doLogin(user), is("501"));
 		
 	}
 
