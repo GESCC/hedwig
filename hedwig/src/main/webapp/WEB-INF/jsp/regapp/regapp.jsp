@@ -22,7 +22,7 @@ $(document).ready(function() {
 						
 		$.ajax({
 			type : "post",
-			url : "/regapp",
+			url : "/applications",
 			contentType : "application/json;charset=utf8",
 			datatype : "json",
 			data : JSON.stringify({"application_name" : $('#appname').val(),"ip_address" : $('#ip').val(),"dns_address" : $('#dns').val()}),
