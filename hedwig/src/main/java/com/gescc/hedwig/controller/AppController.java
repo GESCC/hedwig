@@ -17,7 +17,7 @@ import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.App;
 
 @Controller
-@RequestMapping("/regapp")
+@RequestMapping("/applications")
 public class AppController{
 	private Logger LOG = LoggerFactory.getLogger(AppController.class);
 	
