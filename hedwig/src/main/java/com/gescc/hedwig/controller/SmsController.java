@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gescc.hedwig.service.SmsService;
+import com.gescc.hedwig.util.KeyUtil;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.Sms;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 @Controller
 @RequestMapping(value="/sms")
@@ -32,7 +34,7 @@ public class SmsController {
 		LOG.info("Send SMS : " + sms.toString());
 		try {
 			service.sendSMS(sms);
-		} catch(Exception e) {
+		} catch(UnirestException e) {
 			
 			throw e;
 		}
