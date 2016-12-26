@@ -2,11 +2,17 @@ package com.gescc.hedwig.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.gabia.api.ApiClass;
+import com.gescc.hedwig.util.KeyUtil;
 import com.gescc.hedwig.vo.Sms;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 @Service
 public class GabiaSmsService implements SmsService {
@@ -19,8 +25,11 @@ public class GabiaSmsService implements SmsService {
 	@Value("${api.sendNumber}")
 	private String SEND_NUMBER;
 	
+	@Autowired
+	private KeyUtil keyUtil;
+	
 	@Override
-	public void sendSMS(Sms sms) {
+	public void sendSMS(Sms sms) throws UnirestException {
 		
 		LOG.error(API_ID + API_KEY + SEND_NUMBER);
 		// TODO Auto-generated method stub
@@ -29,7 +38,7 @@ public class GabiaSmsService implements SmsService {
 		
 		String arr[] = new String[7];
 		arr[0] = "sms";	// SMS/LMS 발송 구분
-		arr[1] = "1234";	// 결과 확인을 위한 KEY (MAX 40byte. 중복되지 않도록 생성하여 전달해 주시기 바랍니다. )
+		arr[1] = keyUtil.getSmsKey();	// 결과 확인을 위한 KEY (MAX 40byte. 중복되지 않도록 생성하여 전달해 주시기 바랍니다. )
 		arr[2] = sms.getTitle();	// LMS 발송시 제목으로 사용 SMS 발송시는 수신자에게 내용이 보이지 않습니다.
 		arr[3] = sms.getContents();	// 본문 (90byte 제한 : SMS의 경우)
 		arr[4] = sms.getReceiverNumber();		// 발신 번호
@@ -38,6 +47,31 @@ public class GabiaSmsService implements SmsService {
 		String responseXml = api.send(arr);
 		
 		LOG.error(responseXml);
+		this.sendCallBack(sms, responseXml);
+	}
+
+	@Override
+	public void sendCallBack(Sms sms, Object result) throws UnirestException {
+		// TODO Auto-generated method stub
+		for(int count = 0; count < 10; count++){
+			try {
+				HttpResponse<JsonNode> jsonResponse = Unirest.post(sms.getCallbackUrl())
+						  .header("accept", "application/json")
+						  .field("result", result)
+						  .asJson();
+				break;
+			}
+			catch (UnirestException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				if(count == 10){
+					throw new UnirestException(e);
+				}
+				
+				continue;
+			}
+		}
+		
 	}
 
 }
