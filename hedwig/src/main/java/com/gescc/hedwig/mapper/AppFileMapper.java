@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +56,22 @@ public class AppFileMapper implements AppDao {
 	public List<App> selectAllApp() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Boolean hasApp(String appIp) {
+		// TODO Auto-generated method stub
+		boolean hasApp = false;
+		Iterator<Entry<String, App>> it = AppList.getInstance().getMap().entrySet().iterator();
+		while(it.hasNext()){
+			App app = it.next().getValue();
+			if(appIp.equals(app.getIp())){
+				hasApp = true;
+			} else {
+				hasApp = false;
+			}
+		}
+		return hasApp;
 	}
 
 }
