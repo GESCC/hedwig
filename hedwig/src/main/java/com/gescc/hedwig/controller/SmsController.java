@@ -33,7 +33,7 @@ public class SmsController {
 	public ResultView singleSMS(HttpServletRequest req, HttpServletResponse res, @RequestBody Sms sms ) throws Exception {
 		LOG.info("Send SMS : " + sms.toString());
 		try {
-			service.sendSMS(sms);
+			service.sendSms(sms);
 		} catch(UnirestException e) {
 			
 			throw e;
