@@ -27,9 +27,9 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/messages")
 	public String getAllMessageList(HttpServletRequest req, HttpServletResponse res) {
-		//return service.getMessageListAll();
-		LOG.error(service.getMessageListAll().toString());
-		return service.getMessageListAll().toString();
+		
+		LOG.error(service.getMessageListAll());
+		return service.getMessageListAll();
 		
 	}
 

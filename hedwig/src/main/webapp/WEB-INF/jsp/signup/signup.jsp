@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page session="false"%>
 <html>
+<!-- jQuery -->
 <script src="http://code.jquery.com/jquery-1.12.0.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet"

@@ -20,22 +20,21 @@ public class MessageServiceImpl implements MessageService {
 	private MessageDao dao;
 	
 	@Override
-	public List<Message> getMessageListByDate(Date startDate, Date endDate) {
+	public String getMessageListByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Message> getMessageListByApplicationName(String applicationName) {
+	public String getMessageListByApplicationName(String applicationName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Message> getMessageListAll() {
+	public String getMessageListAll() {
 		// TODO Auto-generated method stub
 		return dao.getMessageListAll();
 	}
 
-	
 }

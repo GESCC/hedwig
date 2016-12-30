@@ -11,14 +11,13 @@ import com.gescc.hedwig.vo.Message;
  */
 public interface MessageDao {
 
-	List<Message> getMessageListByDate(Date startDate, Date endDate);
+	String getMessageListByDate(Date startDate, Date endDate);
 	
-	List<Message> getMessageListByApplicationName(String applicationName);
+	String getMessageListByApplicationName(String applicationName);
 	
-	List<Message> getMessageListAll();
+	String getMessageListAll();
 	
 	Boolean saveMessage(Message message);
 	
 	Boolean deleteLastMessage();
-	
 }
