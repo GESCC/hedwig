@@ -9,11 +9,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.dao.UserDao;
+import com.gescc.hedwig.util.PasswordUtil;
 import com.gescc.hedwig.vo.User;
 import com.gescc.hedwig.vo.UserList;
 
@@ -27,6 +29,9 @@ import com.gescc.hedwig.vo.UserList;
 @Repository
 public class UserFileMapper implements UserDao {
 	
+	@Autowired
+	private PasswordUtil passwordUtil;
+	
 	private ObjectMapper mapper = new ObjectMapper();
 	//이부분 property로 제거 요망 - genie
 	private URL url = UserFileMapper.class.getResource("/data/user.json");
@@ -36,6 +41,7 @@ public class UserFileMapper implements UserDao {
 	public Boolean insertUser(User user) throws Throwable {
 		// TODO Auto-generated method stub
 		LOG.error(url.toString());
+		user.setPassword(passwordUtil.encodePassword(user.getPassword()));
 		UserList.getInstance().getMap().put(user.getEmail(), user);
 		File file = new File(url.toURI());
 		//수없이 쓸거아니니까 읽었다가 다시쓰자 그게 더 빠를것같다 	

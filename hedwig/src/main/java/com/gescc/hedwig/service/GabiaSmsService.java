@@ -36,7 +36,7 @@ public class GabiaSmsService implements SmsService {
 	private MessageDao dao;
 	
 	@Override
-	public void sendSMS(Sms sms) throws UnirestException {
+	public void sendSms(Sms sms) throws UnirestException {
 		
 		LOG.error(API_ID + API_KEY + SEND_NUMBER);
 		// TODO Auto-generated method stub
