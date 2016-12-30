@@ -1,5 +1,7 @@
 package com.gescc.hedwig.service;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.gabia.api.ApiClass;
+import com.gescc.hedwig.dao.MessageDao;
 import com.gescc.hedwig.util.KeyUtil;
+import com.gescc.hedwig.vo.Message;
 import com.gescc.hedwig.vo.Sms;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
@@ -28,6 +32,9 @@ public class GabiaSmsService implements SmsService {
 	@Autowired
 	private KeyUtil keyUtil;
 	
+	@Autowired
+	private MessageDao dao;
+	
 	@Override
 	public void sendSMS(Sms sms) throws UnirestException {
 		
@@ -46,7 +53,19 @@ public class GabiaSmsService implements SmsService {
 		arr[6] = "0";		// 수신 번호
 		String responseXml = api.send(arr);
 		
+		Message msg = new Message();
+		msg.setTitle(sms.getTitle());
+		msg.setSendApplicationName(sms.getApplicationName());
+		msg.setContents(sms.getContents());
+		msg.setReceiverNumber(sms.getReceiverNumber());
+		msg.setSendDate(new Date());
+		
+		
+		
 		LOG.error(responseXml);
+		
+		msg.setResult("success");
+		dao.saveMessage(msg);
 		this.sendCallBack(sms, responseXml);
 	}
 
