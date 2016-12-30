@@ -1,11 +1,13 @@
 package com.gescc.hedwig.controller;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +32,30 @@ public class UserController {
 
 	private Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
+	@Value("${defaultEmail}")
+	private String defaultEmail;
+	
+	@Value("${defaultPassword}")
+	private String defaultPassword;
+	
+	@Value("${defaultPhonenumber}")
+	private String defaultPhoneNumber;
+	
 	@Autowired
 	private UserService userService;
+	
+	@PostConstruct
+	public ResultView createDefaultUser() throws Exception {
+		try {
+			User user = new User();
+			user.setEmail(defaultEmail);
+			user.setPassword(defaultPassword);
+			user.setPhoneNumber(defaultPhoneNumber);
+			return userService.createUser(user);
+		} catch(Exception e) {
+			throw e;
+		}
+	}
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")

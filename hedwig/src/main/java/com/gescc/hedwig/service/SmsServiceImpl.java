@@ -7,7 +7,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class SmsServiceImpl implements SmsService {
 	
 	@Override
-	public void sendSMS(Sms sms) {
+	public void sendSms(Sms sms) {
 		System.out.println(sms.toString());
 	}
 
