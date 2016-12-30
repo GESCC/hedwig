@@ -37,6 +37,12 @@ public class AppFilter implements Filter {
 		else if(path.startsWith("/WEB-INF/jsp")) {
 			chain.doFilter(request, response);
 		}
+		else if(path.startsWith("/applications")) {
+			chain.doFilter(request, response);
+		}
+		else if(path.startsWith("/users")) {
+			chain.doFilter(request, response);
+		}
 		else{
 			try{
 				LOG.info(req.getRemoteAddr());

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
 import com.gescc.hedwig.service.UserService;
 import com.gescc.hedwig.view.ResultView;
@@ -48,12 +49,23 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
 	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
-		
 		LOG.info("login user : " + user.toString());
 		try {
+			if(WebUtils.getSessionAttribute(req,"email") == null){
+				WebUtils.setSessionAttribute(req, "email", user.getEmail());
+				WebUtils.setSessionAttribute(req, "phoneNumber", user.getPhoneNumber());
+			}
 			return userService.doLogin(user);
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String doLogout(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		LOG.info("logout");
+		WebUtils.setSessionAttribute(req, "email", null);
+		WebUtils.setSessionAttribute(req, "phoneNumber", null);
+		return "redirect:/view/login";
 	}
 }
