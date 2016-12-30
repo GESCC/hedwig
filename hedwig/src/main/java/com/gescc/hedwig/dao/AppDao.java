@@ -10,4 +10,5 @@ public interface AppDao {
 	public Boolean deleteApp(String appName);
 	public App selectApp(String appName);
 	public List<App> selectAllApp();
+	public Boolean hasApp(String appIp);
 }
