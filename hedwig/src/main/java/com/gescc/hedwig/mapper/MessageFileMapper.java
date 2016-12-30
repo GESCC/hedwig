@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.dao.MessageDao;
@@ -22,10 +25,28 @@ import com.gescc.hedwig.vo.Message;
 @Repository
 public class MessageFileMapper implements MessageDao{
 
-	private volatile List<Message> messageList = new ArrayList<Message>();
-	private volatile ObjectMapper mapper = new ObjectMapper();
+	private ObjectMapper mapper = new ObjectMapper();
 	private URL url = MessageFileMapper.class.getResource("/data/message.json");
 	private Logger LOG = LoggerFactory.getLogger(MessageFileMapper.class);
+	
+	private volatile List<Message> messageList = new ArrayList<Message>();
+	
+	@PostConstruct
+	public void initList(){
+		
+		try {
+			File file = new File(url.toURI());
+			messageList = mapper.readValue(file, new TypeReference<List>() {
+			});
+			
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		LOG.info("Init Message List :" + messageList);
+	}
+	
 	
 	@Override
 	public List<Message> getMessageListByDate(Date startDate, Date endDate) {
@@ -70,18 +91,11 @@ public class MessageFileMapper implements MessageDao{
 		try {
 			this.saveFile();
 		}
-		catch (JsonGenerationException e) {
+		catch (Throwable e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 
@@ -112,10 +126,11 @@ public class MessageFileMapper implements MessageDao{
 		return true;
 	}
 	
-	public void saveFile() throws JsonGenerationException, JsonMappingException, IOException {
-		LOG.error("들어오긴하니?");
-		File file = new File(url.toString());
+	public void saveFile() throws Throwable {
+		File file = new File(url.toURI());
+		LOG.error(file.getAbsolutePath());
 		PrintWriter out = new PrintWriter(new FileWriter(file, false));
 		mapper.writeValue(out, messageList);
 	}
+	
 }
