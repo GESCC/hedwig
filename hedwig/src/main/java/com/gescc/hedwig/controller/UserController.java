@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
+import com.gescc.hedwig.dao.UserDao;
 import com.gescc.hedwig.service.UserService;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.User;
@@ -33,6 +34,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserDao dao;
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
@@ -51,7 +54,7 @@ public class UserController {
 	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		LOG.info("login user : " + user.toString());
 		try {
-			if(WebUtils.getSessionAttribute(req,"email") == null){
+			if(WebUtils.getSessionAttribute(req,"email") == null && dao.selectUser(user.getEmail()) != null){
 				WebUtils.setSessionAttribute(req, "email", user.getEmail());
 				WebUtils.setSessionAttribute(req, "phoneNumber", user.getPhoneNumber());
 			}
