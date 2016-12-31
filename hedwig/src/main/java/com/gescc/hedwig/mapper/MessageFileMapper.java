@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +30,6 @@ public class MessageFileMapper implements MessageDao{
 	private Logger LOG = LoggerFactory.getLogger(MessageFileMapper.class);
 	
 	private volatile List<Message> messageList = new ArrayList<Message>();
-	private String jsonString;
 	
 	@PostConstruct
 	public void initList(){
@@ -51,7 +49,7 @@ public class MessageFileMapper implements MessageDao{
 	
 	
 	@Override
-	public String getMessageListByDate(Date startDate, Date endDate) {
+	public List<Message> getMessageListByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		List<Message> messageDateList = new ArrayList<>();
 		for (Message msg : messageList) {
@@ -59,17 +57,11 @@ public class MessageFileMapper implements MessageDao{
 				messageDateList.add(msg);
 			}
 		}
-		try {
-			jsonString = mapper.writeValueAsString(messageDateList);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonString;
+		return messageDateList;
 	}
 
 	@Override
-	public String getMessageListByApplicationName(String applicationName) {
+	public List<Message> getMessageListByApplicationName(String applicationName) {
 		// TODO Auto-generated method stub
 		List<Message> messageNameList = new ArrayList<>();
 		for (Message msg : messageList) {
@@ -77,25 +69,13 @@ public class MessageFileMapper implements MessageDao{
 				messageNameList.add(msg);
 			}
 		}
-		try {
-			jsonString = mapper.writeValueAsString(messageNameList);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonString;
+		return messageNameList;
 	}
 
 	@Override
-	public String getMessageListAll() {
+	public List<Message> getMessageListAll() {
 		// TODO Auto-generated method stub
-		try {
-			jsonString = mapper.writeValueAsString(messageList);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return jsonString;
+		return messageList;
 	}
 
 	@Override

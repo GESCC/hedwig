@@ -49,12 +49,12 @@ public class MessageFileMapperTest {
 		msg.setSendDate(SEND_DATE);
 		msg.setTitle(TITLE);
 		
-//		int count = dao.getMessageListAll().size();
-//		
-//		assertThat(dao.saveMessage(msg), is(true));
-//		assertThat(dao.getMessageListByDate(BEFORE_DATE, AFTER_DATE).size(), is(1));
-//		assertThat(dao.getMessageListByApplicationName(SEND_APPLICATOIN_NAME).size(), is(1));
-//		assertThat(dao.getMessageListAll().size(), is(count + 1));
+		int count = dao.getMessageListAll().size();
+		
+		assertThat(dao.saveMessage(msg), is(true));
+		assertThat(dao.getMessageListByDate(BEFORE_DATE, AFTER_DATE).size(), is(1));
+		assertThat(dao.getMessageListByApplicationName(SEND_APPLICATOIN_NAME).size(), is(1));
+		assertThat(dao.getMessageListAll().size(), is(count + 1));
 		dao.deleteLastMessage();
 		
 	}

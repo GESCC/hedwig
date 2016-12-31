@@ -8,9 +8,9 @@ import com.gescc.hedwig.vo.Message;
 
 public interface MessageService {
 
-	String getMessageListByDate(Date startDate, Date endDate);
+	List<Message> getMessageListByDate(Date startDate, Date endDate);
 
-	String getMessageListByApplicationName(String applicationName);
+	List<Message> getMessageListByApplicationName(String applicationName);
 
-	String getMessageListAll();
+	List<Message> getMessageListAll();
 }
