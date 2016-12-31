@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService{
 				return new ResultView("501", "password incorrect");
 			}
 		}catch(Exception e){
-			return new ResultView("501", "Register First");
+			return new ResultView("501", "password incorrect");
 		}
 	}
 
