@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.util.WebUtils;
 
 import com.gescc.hedwig.dao.UserDao;
 import com.gescc.hedwig.service.UserService;
@@ -54,9 +53,9 @@ public class UserController {
 	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
 		LOG.info("login user : " + user.toString());
 		try {
-			if(WebUtils.getSessionAttribute(req,"email") == null && dao.selectUser(user.getEmail()) != null){
-				WebUtils.setSessionAttribute(req, "email", user.getEmail());
-				WebUtils.setSessionAttribute(req, "phoneNumber", user.getPhoneNumber());
+			if(req.getSession().getAttribute("email") == null && dao.selectUser(user.getEmail()) != null){
+				req.getSession().setAttribute("email", user.getEmail());
+				req.getSession().setAttribute("phoneNumber", user.getPhoneNumber());
 			}
 			return userService.doLogin(user);
 		} catch (Exception e) {
@@ -67,8 +66,7 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String doLogout(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		LOG.info("logout");
-		WebUtils.setSessionAttribute(req, "email", null);
-		WebUtils.setSessionAttribute(req, "phoneNumber", null);
+		req.getSession().invalidate();
 		return "redirect:/view/login";
 	}
 }

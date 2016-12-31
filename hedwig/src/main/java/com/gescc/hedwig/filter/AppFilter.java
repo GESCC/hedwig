@@ -31,6 +31,7 @@ public class AppFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		String path = request.getRequestURI();
+		LOG.info(path);
 		if (path.startsWith("/view")) {
 			chain.doFilter(request, response); // Just continue chain.
 		} 
@@ -41,6 +42,9 @@ public class AppFilter implements Filter {
 			chain.doFilter(request, response);
 		}
 		else if(path.startsWith("/users")) {
+			chain.doFilter(request, response);
+		}
+		else if(path.startsWith("/favicon.ico")){
 			chain.doFilter(request, response);
 		}
 		else{
