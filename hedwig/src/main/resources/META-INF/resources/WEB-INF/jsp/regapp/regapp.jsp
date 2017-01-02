@@ -75,7 +75,7 @@ body {
 			<p align="center">
 				<button id="btnRegApp" class="btn btn-primary">등록</button>
 				<!-- 어플리케이션 등록 취소시 로그인화면으로 가도록 해놓음. 수정 필요 -->
-				<a href="/view/login" class="btn btn-default" role="button">취소</a>
+				<a href="/view/login" class="btn btn-default" role="button">돌아가기</a>
 			</p>
 		</div>
 		<div id="msg" class="col-md-4 col-md-offset-4"></div>
