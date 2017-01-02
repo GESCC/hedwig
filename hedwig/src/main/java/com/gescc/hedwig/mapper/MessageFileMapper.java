@@ -36,7 +36,7 @@ public class MessageFileMapper implements MessageDao{
 	public void initList(){
 		
 		try {
-			File file = new File("../message.json");
+			File file = new File("./message.json");
 			messageList = mapper.readValue(file, new TypeReference<List>() {
 			});
 			
@@ -128,7 +128,7 @@ public class MessageFileMapper implements MessageDao{
 	}
 	
 	public void saveFile() throws Throwable {
-		File file = new File("../message.json");
+		File file = new File("./message.json");
 		LOG.error(file.getAbsolutePath());
 		PrintWriter out = new PrintWriter(new FileWriter(file, false));
 		mapper.writeValue(out, messageList);

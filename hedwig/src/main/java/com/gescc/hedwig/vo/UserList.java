@@ -33,7 +33,7 @@ public class UserList {
 	public void setMap() throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		URL url = UserList.class.getResource("/data/user.json");
-		File file = new File("../user.json");
+		File file = new File("./user.json");
 		Map<String,User> list = mapper.readValue(file, new TypeReference<Map<String,User>>(){});
 		this.map = list;
 	}
