@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AppList {
 
 	private static AppList instance;
-	private Map map = new HashMap<>();
+	private Map map = new HashMap<String, App>();
 	private AppList(){
 	};
 	
@@ -26,7 +26,7 @@ public class AppList {
 	public void setMap() throws Throwable{
 		ObjectMapper mapper = new ObjectMapper();
 		URL url = AppList.class.getResource("/data/app.json");
-		File file = new File(url.toURI());
+		File file = new File("../app.json");
 		Map<String,App> list = mapper.readValue(file, new TypeReference<Map<String,App>>(){});
 		this.map = list;
 	}

@@ -32,7 +32,7 @@ public class AppFileMapper implements AppDao {
 		// TODO Auto-generated method stub
 		LOG.error(url.toString());
 		AppList.getInstance().getMap().put(app.getAppName(), app);
-		File file = new File(url.toURI());
+		File file = new File("../app.json");
 		//수없이 쓸거아니니까 읽었다가 다시쓰자 그게 더 빠를것같다 	
 		PrintWriter out = new PrintWriter(new FileWriter(file, false));
 		mapper.writeValue(out, AppList.getInstance().getMap());

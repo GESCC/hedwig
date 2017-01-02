@@ -43,7 +43,7 @@ public class UserFileMapper implements UserDao {
 		LOG.error(url.toString());
 		user.setPassword(passwordUtil.encodePassword(user.getPassword()));
 		UserList.getInstance().getMap().put(user.getEmail(), user);
-		File file = new File(url.toURI());
+		File file = new File("../user.json");
 		//수없이 쓸거아니니까 읽었다가 다시쓰자 그게 더 빠를것같다 	
 		PrintWriter out = new PrintWriter(new FileWriter(file, false));
 		mapper.writeValue(out, UserList.getInstance().getMap());

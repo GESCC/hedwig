@@ -35,7 +35,7 @@ public class MessageFileMapper implements MessageDao{
 	public void initList(){
 		
 		try {
-			File file = new File(url.toURI());
+			File file = new File("../message.json");
 			messageList = mapper.readValue(file, new TypeReference<List>() {
 			});
 			
@@ -51,7 +51,7 @@ public class MessageFileMapper implements MessageDao{
 	@Override
 	public List<Message> getMessageListByDate(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
-		List<Message> messageDateList = new ArrayList<>();
+		List<Message> messageDateList = new ArrayList<Message>();
 		for (Message msg : messageList) {
 			if(msg.getSendDate().after(startDate) && msg.getSendDate().before(endDate)){
 				messageDateList.add(msg);
@@ -63,7 +63,7 @@ public class MessageFileMapper implements MessageDao{
 	@Override
 	public List<Message> getMessageListByApplicationName(String applicationName) {
 		// TODO Auto-generated method stub
-		List<Message> messageNameList = new ArrayList<>();
+		List<Message> messageNameList = new ArrayList<Message>();
 		for (Message msg : messageList) {
 			if(msg.getSendApplicationName().equals(applicationName)){
 				messageNameList.add(msg);
@@ -127,7 +127,7 @@ public class MessageFileMapper implements MessageDao{
 	}
 	
 	public void saveFile() throws Throwable {
-		File file = new File(url.toURI());
+		File file = new File("../message.json");
 		LOG.error(file.getAbsolutePath());
 		PrintWriter out = new PrintWriter(new FileWriter(file, false));
 		mapper.writeValue(out, messageList);

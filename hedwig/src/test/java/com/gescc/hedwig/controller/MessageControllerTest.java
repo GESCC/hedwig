@@ -36,11 +36,10 @@ public class MessageControllerTest {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
 	
-//	@Test
-//	public void selectMessageList() throws Exception {
-//		this.mockMvc.perform(post("/admin/messages"))
-//		.andExpect(jsonPath("$", hasKey("code")))
-//		.andReturn();
-//	}
+	@Test
+	public void selectMessageList() throws Exception {
+		this.mockMvc.perform(get("/admin/messages"))
+		.andReturn();
+	}
 	
 }
