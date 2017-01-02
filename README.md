@@ -2,6 +2,10 @@
 
 ##5분만에 만드는 나만의 문자 서버
 
+##SlideShare
+
+http://www.slideshare.net/ssusere35c84/hedwig-gescc
+
 ##소개/시연 동영상
 
 https://youtu.be/4vM9dsVdup4
