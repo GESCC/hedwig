@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.service.MessageService;
 import com.gescc.hedwig.vo.Message;
 
@@ -24,12 +26,21 @@ public class AdminController {
 	@Autowired
 	private MessageService service;
 	
+	private ObjectMapper mapper = new ObjectMapper();
+	private String jsonString;
+	
 	@ResponseBody
 	@RequestMapping(value = "/messages")
 	public String getAllMessageList(HttpServletRequest req, HttpServletResponse res) {
 		//return service.getMessageListAll();
 		LOG.error(service.getMessageListAll().toString());
-		return service.getMessageListAll().toString();
+		try {
+			jsonString=mapper.writeValueAsString(service.getMessageListAll());
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonString;
 		
 	}
 
