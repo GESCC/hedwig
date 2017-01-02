@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page session="false"%>
+<!-- @author:ChickenPaellas -->
 <html>
 <!-- jQuery -->
 <script src="http://code.jquery.com/jquery-1.12.0.js"></script>

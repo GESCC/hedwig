@@ -6,6 +6,10 @@ import java.util.List;
 
 import com.gescc.hedwig.vo.Message;
 
+/**
+ * @author genie
+ *
+ */
 public interface MessageService {
 
 	List<Message> getMessageListByDate(Date startDate, Date endDate);

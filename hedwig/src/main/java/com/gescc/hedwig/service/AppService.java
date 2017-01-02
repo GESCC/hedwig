@@ -3,6 +3,10 @@ package com.gescc.hedwig.service;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.App;
 
+/**
+ * @author heedong111
+ *
+ */
 public interface AppService {
 
 	public ResultView createApp(App app) throws Exception;

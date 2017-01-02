@@ -8,6 +8,10 @@ import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author heedong111
+ *
+ */
 public class AppList {
 
 	private static AppList instance;

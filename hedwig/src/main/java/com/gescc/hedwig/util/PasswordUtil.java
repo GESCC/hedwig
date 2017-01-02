@@ -4,6 +4,10 @@ import java.security.MessageDigest;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author ChickenPaella
+ *
+ */
 @Component
 public class PasswordUtil {
 	public String encodePassword(String rawPassword) {

@@ -2,7 +2,6 @@ package com.gescc.hedwig.mapper;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,13 +14,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.dao.MessageDao;
 import com.gescc.hedwig.vo.Message;
 
+/**
+ * @author genie
+ *
+ */
 @Repository
 public class MessageFileMapper implements MessageDao{
 

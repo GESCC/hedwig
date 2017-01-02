@@ -17,6 +17,10 @@ import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.Sms;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+/**
+ * @author genie
+ *
+ */
 @Controller
 @RequestMapping(value="/sms")
 public class SmsController {

@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import com.gescc.hedwig.dao.MessageDao;
 import com.gescc.hedwig.vo.Message;
 
+/**
+ * @author genie
+ *
+ */
 @Service
 public class MessageServiceImpl implements MessageService {
 

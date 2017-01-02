@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.gescc.hedwig.vo.User;
 
+/**
+ * @author genie
+ *
+ */
 public interface UserDao {
 
 	public Boolean insertUser(User user) throws Throwable;

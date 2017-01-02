@@ -16,6 +16,10 @@ import com.gescc.hedwig.service.AppService;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.App;
 
+/**
+ * @author heedong111
+ *
+ */
 @Controller
 @RequestMapping("/applications")
 public class AppController{

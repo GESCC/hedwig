@@ -6,7 +6,7 @@ import java.util.List;
 import com.gescc.hedwig.vo.Message;
 
 /**
- * @author geine
+ * @author genie
  *
  */
 public interface MessageDao {

@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.gescc.hedwig.vo.App;
 
+/**
+ * @author heedong111
+ *
+ */
 public interface AppDao {
 
 	public Boolean insertApp(App app) throws Throwable;
