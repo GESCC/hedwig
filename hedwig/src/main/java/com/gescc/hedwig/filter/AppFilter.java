@@ -17,48 +17,60 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gescc.hedwig.mapper.AppFileMapper;
 
-//public class AppFilter implements Filter {
-//
-//	private Logger LOG = LoggerFactory.getLogger(AppFilter.class);
-//	@Autowired
-//	private AppFileMapper appFileMapper = new AppFileMapper();
-//
-//
-//	@Override
-//	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-//			throws IOException, ServletException {
-//		// TODO Auto-generated method stub
-//		HttpServletRequest request = (HttpServletRequest) req;
-//		HttpServletResponse response = (HttpServletResponse) res;
-//		String path = request.getRequestURI();
-//		if (path.startsWith("/view")) {
-//			chain.doFilter(request, response); // Just continue chain.
-//		} 
-//		else if(path.startsWith("/WEB-INF/jsp")) {
-//			chain.doFilter(request, response);
-//		}
-//		else{
-//			try{
-//				LOG.info(req.getRemoteAddr());
-//				if(appFileMapper.hasApp(request.getRemoteAddr())){
-//					chain.doFilter(request, response);
-//				}
-//				else{
-//					throw new Exception("Register Application First");
-//				}
-//			}catch(Exception e){e.printStackTrace();}
-//		}
-//
-//	}
-//
-//	@Override
-//	public void init(FilterConfig arg0) throws ServletException {
-//		// TODO Auto-generated method stub
-//
-//	}
-//	@Override
-//	public void destroy() {
-//		// TODO Auto-generated method stub
-//
-//	}
-//}
+
+public class AppFilter implements Filter {
+
+	private Logger LOG = LoggerFactory.getLogger(AppFilter.class);
+	@Autowired
+	private AppFileMapper appFileMapper = new AppFileMapper();
+
+
+	@Override
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		String path = request.getRequestURI();
+		LOG.info(path);
+		if (path.startsWith("/view")) {
+			chain.doFilter(request, response); // Just continue chain.
+		} 
+		else if(path.startsWith("/WEB-INF/jsp")) {
+			chain.doFilter(request, response);
+		}
+		else if(path.startsWith("/applications")) {
+			chain.doFilter(request, response);
+		}
+		else if(path.startsWith("/users")) {
+			chain.doFilter(request, response);
+		}
+		else if(path.startsWith("/favicon.ico")){
+			chain.doFilter(request, response);
+		}
+		else{
+			try{
+				LOG.info(req.getRemoteAddr());
+				if(appFileMapper.hasApp(request.getRemoteAddr())){
+					chain.doFilter(request, response);
+				}
+				else{
+					throw new Exception("Register Application First");
+				}
+			}catch(Exception e){e.printStackTrace();}
+		}
+
+	}
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+
+	}
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+
+	}
+}
+

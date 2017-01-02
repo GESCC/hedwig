@@ -65,6 +65,8 @@ body {
 					<button type="submit" id="btnLogin" class="btn btn-default">제출</button>
 					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
 				</p>
+				<%= request.getSession().getAttribute("email") %>
+				<%= request.getSession().getAttribute("phoneNumber") %>
 		</div>
 	</div>
 </body>

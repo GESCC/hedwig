@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gescc.hedwig.dao.UserDao;
 import com.gescc.hedwig.service.UserService;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.User;
@@ -43,6 +44,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserDao dao;
 	
 	@PostConstruct
 	public ResultView createDefaultUser() throws Exception {
@@ -72,12 +75,22 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = "application/json")
 	public ResultView doLogin(HttpServletRequest req, HttpServletResponse res, @RequestBody User user) throws Exception{
-		
 		LOG.info("login user : " + user.toString());
 		try {
+			if(req.getSession().getAttribute("email") == null && dao.selectUser(user.getEmail()) != null){
+				req.getSession().setAttribute("email", user.getEmail());
+				req.getSession().setAttribute("phoneNumber", user.getPhoneNumber());
+			}
 			return userService.doLogin(user);
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String doLogout(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		LOG.info("logout");
+		req.getSession().invalidate();
+		return "redirect:/view/login";
 	}
 }

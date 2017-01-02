@@ -58,10 +58,15 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public ResultView doLogin(User user) {
 		// TODO Auto-generated method stub
-		User saveUser = dao.selectUser(user.getEmail());
-		if (saveUser.getPassword().equals(user.getPassword())){
-			return new ResultView("200", "success");
-		} else {
+		try{
+			User saveUser = dao.selectUser(user.getEmail());
+
+			if (saveUser.getPassword().equals(user.getPassword())){
+				return new ResultView("200", "success");
+			} else {
+				return new ResultView("501", "password incorrect");
+			}
+		}catch(Exception e){
 			return new ResultView("501", "password incorrect");
 		}
 	}
