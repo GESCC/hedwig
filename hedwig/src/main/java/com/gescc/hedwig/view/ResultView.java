@@ -2,6 +2,10 @@ package com.gescc.hedwig.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author genie
+ *
+ */
 public class ResultView {
 
 	private String code;

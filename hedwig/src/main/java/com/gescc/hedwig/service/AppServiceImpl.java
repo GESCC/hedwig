@@ -9,6 +9,10 @@ import com.gescc.hedwig.dao.AppDao;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.App;
 
+/**
+ * @author heedong111
+ *
+ */
 @Service("appService")
 public class AppServiceImpl implements AppService{
 

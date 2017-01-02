@@ -1,6 +1,5 @@
 package com.gescc.hedwig.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.service.MessageService;
-import com.gescc.hedwig.vo.Message;
 
+/**
+ * @author ChickenPaella
+ *
+ */
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {

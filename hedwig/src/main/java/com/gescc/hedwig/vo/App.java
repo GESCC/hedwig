@@ -2,6 +2,10 @@ package com.gescc.hedwig.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author heedong111
+ *
+ */
 public class App{
 	
 	@JsonProperty("application_name")

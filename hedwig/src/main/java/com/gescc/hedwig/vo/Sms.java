@@ -2,6 +2,10 @@ package com.gescc.hedwig.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author genie
+ *
+ */
 public class Sms {
 	private String title;
 	@JsonProperty("receiver_number")

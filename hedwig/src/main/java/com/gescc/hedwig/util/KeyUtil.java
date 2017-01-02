@@ -6,6 +6,10 @@ import java.util.Random;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author ChickenPaella
+ *
+ */
 @Component
 public class KeyUtil {
 	public String getSmsKey() {

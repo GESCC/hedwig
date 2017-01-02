@@ -11,6 +11,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gescc.hedwig.mapper.UserFileMapper;
 
+/**
+ * @author genie
+ *
+ */
 public class UserList {
 
 	private static UserList instance;
