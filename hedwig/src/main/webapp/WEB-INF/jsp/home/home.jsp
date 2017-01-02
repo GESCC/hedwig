@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page session="false"%>
 <html>
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-1.12.0.js"></script>
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -9,9 +11,6 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<!-- jQuery -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
 $(document).ready(function() {
 	$("#btnLogin").click(function() {
@@ -66,6 +65,8 @@ body {
 					<button type="submit" id="btnLogin" class="btn btn-default">제출</button>
 					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
 				</p>
+				<%= request.getSession().getAttribute("email") %>
+				<%= request.getSession().getAttribute("phoneNumber") %>
 		</div>
 	</div>
 </body>

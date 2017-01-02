@@ -1,5 +1,9 @@
 package com.gescc.hedwig.controller;
 
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 	
 	@RequestMapping("/login")
-	public String index(){
-		return "/home/home";
+	public String index(HttpServletRequest req, HttpServletResponse res){
+		if(req.getSession().getAttribute("email") != null)
+			return "/home/afterlogin";
+		else
+			return "/home/home";
 	}
 
-	
 	@RequestMapping("/signup")
 	public String signup(){
 		return "/signup/signup";
@@ -21,6 +27,11 @@ public class ViewController {
 	@RequestMapping("/regapp")
 	public String regapp(){
 		return "/regapp/regapp";
+	}
+	
+	@RequestMapping("/admin")
+	public String admin(){
+		return "/admin/admin";
 	}
 
 }
