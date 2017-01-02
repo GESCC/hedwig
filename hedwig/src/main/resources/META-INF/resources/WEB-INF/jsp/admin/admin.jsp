@@ -43,7 +43,7 @@ th,td {
 	var num=1;
 	$(document).ready(function(){
 		$.ajax({
-			url : "http://localhost:8080/admin/messages",
+			url : "/admin/messages",
 			dataType : "json",
 			success : function(data) {
 				$.each(data, function(index, entry) {
