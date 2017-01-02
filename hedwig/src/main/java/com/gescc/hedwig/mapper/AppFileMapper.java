@@ -17,6 +17,10 @@ import com.gescc.hedwig.dao.AppDao;
 import com.gescc.hedwig.vo.App;
 import com.gescc.hedwig.vo.AppList;
 
+/**
+ * @author heedong111
+ *
+ */
 @Repository
 public class AppFileMapper implements AppDao {
 
