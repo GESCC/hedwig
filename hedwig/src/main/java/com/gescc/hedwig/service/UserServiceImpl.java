@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gescc.hedwig.dao.UserDao;
 import com.gescc.hedwig.view.ResultView;
 import com.gescc.hedwig.vo.User;
+import com.gescc.hedwig.util.PasswordUtil;
 
 /**
 * UserService
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserDao dao;
+	
+	@Autowired
+	private PasswordUtil passwordUtil;
 	
 	@Override
 	public ResultView createUser(User user) {
@@ -60,8 +64,8 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		try{
 			User saveUser = dao.selectUser(user.getEmail());
-
-			if (saveUser.getPassword().equals(user.getPassword())){
+			
+			if (saveUser.getPassword().equals(passwordUtil.encodePassword(user.getPassword()))){
 				return new ResultView("200", "success");
 			} else {
 				return new ResultView("501", "password incorrect");
