@@ -18,24 +18,25 @@ public class ViewController {
 	@RequestMapping("/login")
 	public String index(HttpServletRequest req, HttpServletResponse res){
 		if(req.getSession().getAttribute("email") != null)
-			return "/home/afterlogin";
+			return "/admin/admin";
 		else
 			return "/home/home";
 	}
-
-	@RequestMapping("/signup")
-	public String signup(){
-		return "/signup/signup";
-	}
 	
 	@RequestMapping("/regapp")
-	public String regapp(){
-		return "/regapp/regapp";
+	public String regapp(HttpServletRequest req, HttpServletResponse res){
+		if(req.getSession().getAttribute("email") != null)
+			return "/regapp/regapp";
+		else
+			return "/home/home";
 	}
 	
 	@RequestMapping("/admin")
-	public String admin(){
-		return "/admin/admin";
+	public String admin(HttpServletRequest req, HttpServletResponse res){
+		if(req.getSession().getAttribute("email") != null)
+			return "/admin/admin";
+		else
+			return "/home/home";
 	}
 
 }

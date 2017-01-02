@@ -23,9 +23,6 @@ th,td {
 <title>Administrator</title>
 </head>
 <body>
-<p align=right>
-<a href="/view/login" class="btn btn-default" role="button">로그아웃</a>
-</p>
 <h1 class="text-center">Administrator Page</h1><br>
 <table id="messageList" class="table table-striped table-hover table-bordered">
 	<tr>
@@ -38,6 +35,13 @@ th,td {
 		<th class="col-md-2">수신날짜</th>
 	</tr>
 </table>
+
+<div class="row">
+	<p align="center">
+	<a href="/view/regapp" class="btn btn-primary" role="button">어플리케이션 등록</a>
+	<a href="/users/logout" class="btn btn-default" role="button">로그아웃</a>
+	</p>
+</div>
 
 <script>
 	var num=1;

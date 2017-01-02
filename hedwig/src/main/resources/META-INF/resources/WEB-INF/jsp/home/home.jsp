@@ -26,7 +26,7 @@ $(document).ready(function() {
 				password: $("#passwd").val() }),
 			success: function(response) {
 				if(response.code=='200') {
-					alert("login success");
+					location.reload();
 				}
 				else {
 					alert("ERRORCODE" + response.code + " : " + response.message);
@@ -58,17 +58,9 @@ body {
 					<label for="passwd">암호</label> <input type="password"
 						class="form-control" id="passwd" name="passwd" placeholder="암호">
 				</div>
-				<div class="checkbox">
-					<label> <input type="checkbox" name="rememberme">Remember
-						Me
-					</label>
-				</div>
 				<p align="center">
-					<button type="submit" id="btnLogin" class="btn btn-default">제출</button>
-					<a href="/view/signup" class="btn btn-primary" role="button">회원가입</a>
+					<button type="submit" id="btnLogin" class="btn btn-default">로그인</button>
 				</p>
-				<%= request.getSession().getAttribute("email") %>
-				<%= request.getSession().getAttribute("phoneNumber") %>
 		</div>
 	</div>
 </body>
