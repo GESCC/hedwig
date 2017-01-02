@@ -28,5 +28,10 @@ public class ViewController {
 	public String regapp(){
 		return "/regapp/regapp";
 	}
+	
+	@RequestMapping("/admin")
+	public String admin(){
+		return "/admin/admin";
+	}
 
 }

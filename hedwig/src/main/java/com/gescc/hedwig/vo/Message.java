@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Message {
 
-	@JsonProperty("sned_application_name")
+	@JsonProperty("send_application_name")
 	private String sendApplicationName;
 	private String title;
 	private String contents;

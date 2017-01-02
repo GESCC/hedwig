@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.gescc.hedwig.mapper.AppFileMapper;
 
+
 public class AppFilter implements Filter {
 
 	private Logger LOG = LoggerFactory.getLogger(AppFilter.class);
@@ -72,3 +73,4 @@ public class AppFilter implements Filter {
 
 	}
 }
+

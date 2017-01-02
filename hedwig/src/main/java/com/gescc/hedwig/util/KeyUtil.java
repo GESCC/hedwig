@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KeyUtil {
-	public static String getSmsKey() {
+	public String getSmsKey() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 		String currentTime = sdf.format(System.currentTimeMillis());
 		StringBuffer key = new StringBuffer();
