@@ -83,7 +83,7 @@ FAIL { "code":"500", "message":"Server Internal Error"}
 ```
 
 ##사용 가능 호스팅 업체
-* Gabi(default)
+* Gabia(default)
 * Tongkni(구현예정)
 * SmsService Interface를 상속받아 개인의 입맛에 맞게 구현 가능
 
