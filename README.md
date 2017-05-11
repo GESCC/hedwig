@@ -1,16 +1,16 @@
 # Hedwig
 
-##5분만에 만드는 나만의 문자 서버
+## 5분만에 만드는 나만의 문자 서버
 
-##SlideShare
+## SlideShare
 
 http://www.slideshare.net/ssusere35c84/hedwig-gescc
 
-##소개/시연 동영상
+## 소개/시연 동영상
 
 https://youtu.be/4vM9dsVdup4
 
-###Getting Start
+### Getting Start
 
 **Gabia API 등록**  
 * 회원가입  
@@ -82,16 +82,16 @@ SUCCESS { "code":"200", "message":"OK" }
 FAIL { "code":"500", "message":"Server Internal Error"}
 ```
 
-##사용 가능 호스팅 업체
+## 사용 가능 호스팅 업체
 * Gabia(default)
 * Tongkni(구현예정)
 * SmsService Interface를 상속받아 개인의 입맛에 맞게 구현 가능
 
-###빌드 요구사양
+### 빌드 요구사양
 JDK 7+  
 Maven 3.2.x+
 
-##사용한 오픈소스
+## 사용한 오픈소스
 Spring 4.1.1  
 Spring Boot 1.4.2  
 Aspectj 1.6.10  
